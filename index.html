@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div style="color:brown;font-size: 30px;">{{arr[2].name}}:{{arr}}</div>
+    <div style="color:brown;font-size: 30px;">{{obj}}</div>
+    <div style="color:brown;font-size: 30px;">{{c_data}}</div>
+  </div>
+  <script src="dist/vue.js"></script>
+  <script>
+    Vue.mixin({
+      created(){
+        console.log(this.data,1)
+      }
+    })
+    const vm = new Vue({
+      created() {
+        console.log(this.data,2)
+      },
+      el:'#app',
+      data() {
+        return {
+          data:'WORD',
+          pid: 666,
+          arr: [1,2,{
+            name: 'arr'
+          },[1,2]],
+          obj:{a:{b:1}}
+        }
+      },
+      computed:{
+        c_data(){
+          console.log('计算属性取值')
+          return this.data + '!'
+        }
+      },
+      props:{
+
+      },
+      watch:{
+        pid(newV,oldV){
+          console.log(oldV,newV)
+        }
+      }
+    })
+    vm.data = 'DOC'
+    vm.data = 'DOC'
+    // vm.pid = 777
+  </script>
+</body>
+</html>
